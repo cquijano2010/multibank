@@ -1,0 +1,137 @@
+<mxfile>
+  <diagram name="Arquitectura Sistema Interbancario" id="b5dD8Jj8L5QJ9JjJ2J6J">
+    <mxGraphModel dx="1426" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Capas -->
+        <mxCell id="layer_clientes" value="Capa Clientes" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="160" height="180"/>
+        </mxCell>
+        
+        <mxCell id="app_movil" value="Aplicación Móvil" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="layer_clientes">
+          <mxGeometry y="26" width="160" height="26"/>
+        </mxCell>
+        
+        <mxCell id="banca_web" value="Banca en Línea" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="layer_clientes">
+          <mxGeometry y="52" width="160" height="26"/>
+        </mxCell>
+        
+        <!-- API Gateway -->
+        <mxCell id="api_gateway" value="API Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="120" height="60"/>
+        </mxCell>
+        
+        <!-- Conexiones Clientes a API -->
+        <mxCell id="conn1" style="edgeStyle=none;curved=1;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="layer_clientes" target="api_gateway">
+          <mxGeometry relative="1"/>
+        </mxCell>
+        
+        <!-- Servicio de Identidad -->
+        <mxCell id="servicio_identidad" value="Servicio de Identidad (SSO)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="500" y="130" width="120" height="80"/>
+        </mxCell>
+        
+        <!-- Conexión API a Identidad -->
+        <mxCell id="conn2" value="Autenticación" style="edgeStyle=none;curved=1;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="api_gateway" target="servicio_identidad">
+          <mxGeometry relative="1"/>
+        </mxCell>
+        
+        <!-- Servicios Core -->
+        <mxCell id="servicios_core" value="Servicios Core" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="300" height="182"/>
+        </mxCell>
+        
+        <mxCell id="perfil_cliente" value="Perfil del Cliente" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="servicios_core">
+          <mxGeometry y="26" width="300" height="26"/>
+        </mxCell>
+        
+        <mxCell id="agregacion" value="Agregación de Productos" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="servicios_core">
+          <mxGeometry y="52" width="300" height="26"/>
+        </mxCell>
+        
+        <mxCell id="cache" value="Caché Distribuido" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="servicios_core">
+          <mxGeometry y="78" width="300" height="26"/>
+        </mxCell>
+        
+        <mxCell id="event_bus" value="Event Bus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="servicios_core">
+          <mxGeometry y="104" width="300" height="26"/>
+        </mxCell>
+        
+        <!-- Conexión API a Servicios Core -->
+        <mxCell id="conn3" style="edgeStyle=none;curved=1;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api_gateway" target="servicios_core">
+          <mxGeometry relative="1"/>
+        </mxCell>
+        
+        <!-- Sistemas Bancarios -->
+        <mxCell id="sistemas_bancarios" value="Sistemas Bancarios" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="480" width="740" height="182"/>
+        </mxCell>
+        
+        <mxCell id="banco1" value="Banco A (Core Banking)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="sistemas_bancarios">
+          <mxGeometry y="26" width="740" height="26"/>
+        </mxCell>
+        
+        <mxCell id="banco2" value="Banco B (Core Banking)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="sistemas_bancarios">
+          <mxGeometry y="52" width="740" height="26"/>
+        </mxCell>
+        
+        <mxCell id="aseguradora" value="Aseguradora (Sistema de Pólizas)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="sistemas_bancarios">
+          <mxGeometry y="78" width="740" height="26"/>
+        </mxCell>
+        
+        <mxCell id="fondos" value="Administradora de Fondos" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="sistemas_bancarios">
+          <mxGeometry y="104" width="740" height="26"/>
+        </mxCell>
+        
+        <!-- Adapters -->
+        <mxCell id="adaptadores" value="Adaptadores" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="480" width="300" height="130"/>
+        </mxCell>
+        
+        <mxCell id="adapter1" value="Connector Banco A" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="adaptadores">
+          <mxGeometry y="26" width="300" height="26"/>
+        </mxCell>
+        
+        <mxCell id="adapter2" value="Connector Banco B" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="adaptadores">
+          <mxGeometry y="52" width="300" height="26"/>
+        </mxCell>
+        
+        <mxCell id="adapter3" value="Connector Aseguradora" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;rotatable=0;part=1;" vertex="1" parent="adaptadores">
+          <mxGeometry y="78" width="300" height="26"/>
+        </mxCell>
+        
+        <!-- Conexiones -->
+        <mxCell id="conn4" style="edgeStyle=none;curved=1;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="servicios_core" target="adaptadores">
+          <mxGeometry relative="1"/>
+        </mxCell>
+        
+        <mxCell id="conn5" style="edgeStyle=none;curved=1;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="adaptadores" target="sistemas_bancarios">
+          <mxGeometry relative="1"/>
+        </mxCell>
+        
+        <!-- Elementos de Seguridad -->
+        <mxCell id="seguridad" value="Elementos de Seguridad" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="650" y="100" width="120" height="30"/>
+        </mxCell>
+        
+        <mxCell id="mfa" value="MFA" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="650" y="140" width="60" height="60"/>
+        </mxCell>
+        
+        <mxCell id="cifrado" value="Cifrado TLS/mTLS" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="710" y="140" width="80" height="60"/>
+        </mxCell>
+        
+        <mxCell id="tokenizacion" value="Tokenización" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="650" y="210" width="80" height="60"/>
+        </mxCell>
+        
+        <mxCell id="auditoria" value="Auditoría" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="740" y="210" width="60" height="60"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
